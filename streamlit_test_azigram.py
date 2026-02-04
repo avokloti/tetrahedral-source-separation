@@ -98,7 +98,7 @@ def loadData(uploaded_file, start_time, end_time):
 # finally, we can apply an inverse FFT to see what the above spectrogram sounds like!
 def makeAudioReconstruction(spec, nf_full, framerate, highpass_filter):
     (nx, nf) = spec.shape
-    spec_full = np.zeros((nx, nf_full), dtype=np.complex_)
+    spec_full = np.zeros((nx, nf_full), dtype=np.complex128)
     spec_full[:, 0:nf] = spec
     t, audio = scipysig.istft(spec_full.T, framerate)
     audio = butter_highpass_filter(audio, highpass_filter, framerate)
